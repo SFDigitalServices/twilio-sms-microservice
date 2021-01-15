@@ -14,12 +14,10 @@ class TwilioService():
         """ Implement POST """
         request_body = req.bounded_stream.read()
         json_params = json.loads(request_body)
-        print(json_params)
         if json_params["submission"] and json_params["submission"]["data"]:
             _from_number = os.environ.get('TWILIO_FROM')
             _to_number = json_params["submission"]["data"]['phoneNumber']
-            print(_to_number)
-            _message = 'Successfully sign up for vaccination notification!'
+            _message = json_params["submission"]["data"]['sms_message']
             # Update .env with Live Credentials to send actual sms
             account_sid = os.environ.get('TWILIO_SID')
             auth_token = os.environ.get('TWILIO_TOKEN')
