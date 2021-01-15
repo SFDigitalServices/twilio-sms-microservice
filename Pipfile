@@ -1,0 +1,28 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+
+[packages]
+falcon = "*"
+gunicorn = "*"
+coveralls = "*"
+pyjsend = "*"
+sentry-sdk = "*"
+pytest = "*"
+pytest-cov = "*"
+pre-commit = "*"
+pylint = "*"
+requests = "*"
+requests-oauthlib = "*"
+sqlalchemy = "*"
+alembic = "*"
+psycopg2 = "*"
+mako = "*"
+redis = "*"
+
+[requires]
+python_version = "3.7"
