@@ -61,15 +61,6 @@ Code coverage command with missing statement line numbers
 Set up git hook scripts with pre-commit
 > $ pipenv run pre-commit install
 
-Install alembic
-> $ pip install alembic
-
-Create a migration
-> $ alembic revision -m "Add a column"
-
-Run DB migrations
-> $ alembic upgrade head
-
 ### Run Dev Server with SSL
 Generate SSL keys
 > $ openssl req -newkey rsa:2048 -nodes -keyout myserver-dev.key -x509 -out myserver-dev.crt
