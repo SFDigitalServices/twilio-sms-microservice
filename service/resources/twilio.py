@@ -14,10 +14,11 @@ class TwilioService():
         """ Implement POST """
         request_body = req.bounded_stream.read()
         json_params = json.loads(request_body)
-        if json_params["submission"] and json_params["submission"]["data"]:
+        data = json_params["submission"]
+        if data and data["data"] and data["data"]["notifyMeByTextMessage"]:
             _from_number = os.environ.get('TWILIO_FROM')
-            _to_number = json_params["submission"]["data"]['phoneNumber']
-            _message = json_params["submission"]["data"]['sms_message']
+            _to_number = data["data"]["phoneNumber"]
+            _message = data["data"].get("sms_message", "Subscribed to vaccine notification")
             # Update .env with Live Credentials to send actual sms
             account_sid = os.environ.get('TWILIO_SID')
             auth_token = os.environ.get('TWILIO_TOKEN')
@@ -28,7 +29,6 @@ class TwilioService():
                 to=_to_number,
                 from_=_from_number, #test From number from twilio
                 body=_message)
-
             if message.sid:
                 resp.status = falcon.HTTP_200
                 resp.body = json.dumps(jsend.success({
